@@ -1,7 +1,7 @@
 #!/bin/bash
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
-kubectl create configmap grafana-dashboard -n monitoring --from-file=grafana-dashboard.json
+kubectl create configmap grafana-dashboard -n monitoring --from-file=./grafana-dashboard.json
 
 helm upgrade --install grafana bitnami/grafana -n monitoring \
 --set service.type="NodePort" \
