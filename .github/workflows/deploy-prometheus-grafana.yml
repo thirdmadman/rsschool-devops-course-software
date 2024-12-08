@@ -4,7 +4,7 @@ on:
 
 jobs:
   deploy-prometheus-grafana:
-    name: Deploy prometheus job
+    name: Deploy Grafana job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
