@@ -1,9 +1,9 @@
-name: Github Actions workflow for deployment Grafana on k3s cluster with Prometheus
+name: Github Actions workflow for deployment Grafana on k3s cluster
 on:
   workflow_dispatch
 
 jobs:
-  deploy-prometheus-grafana:
+  deploy-grafana:
     name: Deploy Grafana job
     runs-on: ubuntu-latest
     steps:
