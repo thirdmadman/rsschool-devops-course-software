@@ -12,5 +12,5 @@ helm upgrade --install grafana bitnami/grafana -n monitoring \
 --set dashboardsProvider.enabled=true \
 --set dashboardsConfigMaps[0].configMapName=grafana-dashboard \
 --set dashboardsConfigMaps[0].fileName=grafana-dashboard.json \
---set admin.existingSecret: "grafana-admin-secret" \
---set admin.existingSecretPasswordKey: admin-password
+--set admin.existingSecret="grafana-admin-secret" \
+--set admin.existingSecretPasswordKey="admin-password"
