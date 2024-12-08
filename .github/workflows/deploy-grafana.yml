@@ -35,7 +35,7 @@ jobs:
           # Create ProxyCommand to connect through jump host using the SSH key
           PROXY_CMD="ssh -i ~/.ssh/id_rsa_bastion -o StrictHostKeyChecking=no -W %h:%p $SSH_USER_BASTION@$SSH_IP_BASTION"
           
-          scp -i ~/.ssh/id_rsa_main_node -r -o ProxyCommand="$PROXY_CMD" "${PWD}/prometheus-grafana/" $SSH_USER_MAIN_NODE@$SSH_IP_MAIN_NODE:/home/ec2-user/prometheus-grafana/
+          scp -i ~/.ssh/id_rsa_main_node -r -o ProxyCommand="$PROXY_CMD" "${PWD}/grafana/" $SSH_USER_MAIN_NODE@$SSH_IP_MAIN_NODE:/home/ec2-user/grafana/
 
           # Use ProxyCommand to connect to the remote host through the jump host and execute the remote script
-          ssh -i ~/.ssh/id_rsa_main_node -o ProxyCommand="$PROXY_CMD" $SSH_USER_MAIN_NODE@$SSH_IP_MAIN_NODE "sudo mv /home/ec2-user/prometheus-grafana/ /root/prometheus-grafana/ && sudo chmod -R 755 /root/prometheus-grafana/ && sudo bash /root/prometheus-grafana/deploy_prometheus_grafana.sh"
+          ssh -i ~/.ssh/id_rsa_main_node -o ProxyCommand="$PROXY_CMD" $SSH_USER_MAIN_NODE@$SSH_IP_MAIN_NODE "sudo mv /home/ec2-user/grafana/ /root/grafana/ && sudo chmod -R 755 /root/grafana/ && sudo bash /root/grafana/deploy_grafana.sh"
