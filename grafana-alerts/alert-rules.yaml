@@ -57,7 +57,7 @@ groups:
                 {{ $labels.instance }}
           isPaused: false
           notification_settings:
-            receiver: grafana-default-email
+            receiver: admin
         - uid: de6thass0gohsa
           title: High memory usage
           condition: C
@@ -110,12 +110,12 @@ groups:
                 {{ $labels.instance }}
           isPaused: false
           notification_settings:
-            receiver: grafana-default-email
+            receiver: admin
 ---
 apiVersion: 1
 contactPoints:
     - orgId: 1
-      name: grafana-default-email
+      name: admin
       receivers:
         - uid: fe71psdwcbp4wb
           type: email
