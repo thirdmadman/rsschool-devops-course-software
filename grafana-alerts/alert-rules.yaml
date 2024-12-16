@@ -111,3 +111,15 @@ groups:
           isPaused: false
           notification_settings:
             receiver: grafana-default-email
+---
+apiVersion: 1
+contactPoints:
+    - orgId: 1
+      name: grafana-default-email
+      receivers:
+        - uid: fe71psdwcbp4wb
+          type: email
+          settings:
+            addresses: someone@example.com
+            singleEmail: false
+          disableResolveMessage: false

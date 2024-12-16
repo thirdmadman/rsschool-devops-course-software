@@ -7,6 +7,8 @@ SMTP_USER="${GRAFANA_SMTP_USER:-'USER'}"
 SMTP_PASSWORD="${GRAFANA_SMTP_PASSWORD:-'PASSWORD'}"
 SMTP_FROM_ADDRESS="${GRAFANA_SMTP_FROM_ADDRESS:-'someone@example.com'}"
 
+sed -i -e "s/someone@example.com/$SMTP_FROM_ADDRESS/" /root/grafana-alerts/alert-rules.yaml
+
 kubectl create secret generic grafana-admin-secret -n monitoring --from-literal=admin-password="$ADMIN_PASSWORD"
 
 kubectl create configmap grafana-dashboard -n monitoring --from-file=/root/grafana-alerts/grafana-dashboard.json
