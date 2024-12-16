@@ -1,3 +1,16 @@
+---
+apiVersion: 1
+contactPoints:
+    - orgId: 1
+      name: admin
+      receivers:
+        - uid: fe71psdwcbp4wb
+          type: email
+          settings:
+            addresses: someone@example.com
+            singleEmail: false
+          disableResolveMessage: false
+--- 
 apiVersion: 1
 groups:
     - orgId: 1
@@ -111,15 +124,3 @@ groups:
           isPaused: false
           notification_settings:
             receiver: admin
----
-apiVersion: 1
-contactPoints:
-    - orgId: 1
-      name: admin
-      receivers:
-        - uid: fe71psdwcbp4wb
-          type: email
-          settings:
-            addresses: someone@example.com
-            singleEmail: false
-          disableResolveMessage: false
