@@ -31,6 +31,11 @@ jobs:
           SSH_USER_BASTION: ${{ secrets.SSH_USER_BASTION }}
           SSH_IP_MAIN_NODE: ${{ secrets.SSH_IP_MAIN_NODE }}
           SSH_USER_MAIN_NODE: ${{ secrets.SSH_USER_MAIN_NODE }}
+          GRAFANA_ADMIN_PASSWORD: ${{ secrets.GRAFANA_ADMIN_PASSWORD  }}
+          GRAFANA_SMTP_HOST: ${{ secrets.GRAFANA_SMTP_HOST  }}
+          GRAFANA_SMTP_USER: ${{ secrets.GRAFANA_SMTP_USER  }}
+          GRAFANA_SMTP_PASSWORD: ${{ secrets.GRAFANA_SMTP_PASSWORD  }}
+          GRAFANA_SMTP_FROM_ADDRESS: ${{ secrets.GRAFANA_SMTP_FROM_ADDRESS  }}
         run: |
           # Create ProxyCommand to connect through jump host using the SSH key
           PROXY_CMD="ssh -i ~/.ssh/id_rsa_bastion -o StrictHostKeyChecking=no -W %h:%p $SSH_USER_BASTION@$SSH_IP_BASTION"
@@ -41,4 +46,13 @@ jobs:
           # sudo ZEBRA=true /usr/bin/env
 
           # Use ProxyCommand to connect to the remote host through the jump host and execute the remote script
-          ssh -i ~/.ssh/id_rsa_main_node -o ProxyCommand="$PROXY_CMD" $SSH_USER_MAIN_NODE@$SSH_IP_MAIN_NODE "sudo mv /home/ec2-user/grafana-alerts/ /root/grafana-alerts/ && sudo chmod -R 755 /root/grafana-alerts/ && sudo bash /root/grafana-alerts/deploy_grafana_alerts.sh"
+          ssh -i ~/.ssh/id_rsa_main_node -o ProxyCommand="$PROXY_CMD" $SSH_USER_MAIN_NODE@$SSH_IP_MAIN_NODE \
+          "sudo mv /home/ec2-user/grafana-alerts/ /root/grafana-alerts/ \
+          && sudo chmod -R 755 /root/grafana-alerts/ \
+          && sudo \
+          GRAFANA_ADMIN_PASSWORD='$GRAFANA_ADMIN_PASSWORD' \
+          GRAFANA_SMTP_HOST='$GRAFANA_SMTP_HOST' \
+          GRAFANA_SMTP_USER='$GRAFANA_SMTP_USER' \
+          GRAFANA_SMTP_PASSWORD='$GRAFANA_SMTP_PASSWORD' \
+          GRAFANA_SMTP_FROM_ADDRESS='$GRAFANA_SMTP_FROM_ADDRESS' \
+          bash /root/grafana-alerts/deploy_grafana_alerts.sh"
