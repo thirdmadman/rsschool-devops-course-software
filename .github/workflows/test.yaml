@@ -39,4 +39,4 @@ jobs:
           scp -i ~/.ssh/id_rsa_main_node -r -o ProxyCommand="$PROXY_CMD" "${PWD}/grafana-alerts/" $SSH_USER_MAIN_NODE@$SSH_IP_MAIN_NODE:/home/ec2-user/grafana-alerts/
 
           # Use ProxyCommand to connect to the remote host through the jump host and execute the remote script
-          ssh -i ~/.ssh/id_rsa_main_node -o ProxyCommand="$PROXY_CMD" $SSH_USER_MAIN_NODE@$SSH_IP_MAIN_NODE "sudo mv /home/ec2-user/grafana-alerts/ /root/grafana-alerts/ && sudo chmod -R 755 /root/grafana-alerts/ && TEST_SECRET=$TEST_SECRET && sudo bash /root/grafana-alerts/test.sh"
+          ssh -i ~/.ssh/id_rsa_main_node -o ProxyCommand="$PROXY_CMD" $SSH_USER_MAIN_NODE@$SSH_IP_MAIN_NODE "sudo mv /home/ec2-user/grafana-alerts/ /root/grafana-alerts/ && sudo chmod -R 755 /root/grafana-alerts/ && TEST_SECRET='$TEST_SECRET' && sudo bash /root/grafana-alerts/test.sh"
