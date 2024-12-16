@@ -9,8 +9,6 @@ contactPoints:
             addresses: someone@example.com
             singleEmail: false
           disableResolveMessage: false
-
-apiVersion: 1
 groups:
     - orgId: 1
       name: Critical
