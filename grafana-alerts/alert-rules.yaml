@@ -1,4 +1,3 @@
----
 apiVersion: 1
 contactPoints:
     - orgId: 1
@@ -10,7 +9,7 @@ contactPoints:
             addresses: someone@example.com
             singleEmail: false
           disableResolveMessage: false
---- 
+
 apiVersion: 1
 groups:
     - orgId: 1
