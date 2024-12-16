@@ -11,7 +11,7 @@ kubectl create secret generic grafana-admin-secret -n monitoring --from-literal=
 
 kubectl create configmap grafana-dashboard -n monitoring --from-file=/root/grafana-alerts/grafana-dashboard.json
 
-kubectl create configmap grafana-alert-rules -n monitoring --from-file=alert-rules.yaml
+kubectl create configmap grafana-alert-rules -n monitoring --from-file=/root/grafana-alerts/alert-rules.yaml
 
 helm upgrade --install grafana bitnami/grafana -n monitoring \
 --set service.type="NodePort" \
