@@ -9,7 +9,7 @@ SMTP_FROM_ADDRESS="${GRAFANA_SMTP_FROM_ADDRESS:-'someone@example.com'}"
 
 kubectl create secret generic grafana-admin-secret -n monitoring --from-literal=admin-password="$ADMIN_PASSWORD"
 
-kubectl create configmap grafana-dashboard -n monitoring --from-file=/root/grafana/grafana-dashboard.json
+kubectl create configmap grafana-dashboard -n monitoring --from-file=/root/grafana-alerts/grafana-dashboard.json
 
 kubectl create configmap grafana-alert-rules -n monitoring --from-file=alert-rules.yaml
 
