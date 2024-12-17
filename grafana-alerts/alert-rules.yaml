@@ -79,7 +79,7 @@ groups:
               datasourceUid: prometheusdatasource
               model:
                 editorMode: code
-                expr: 100 * avg((1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)))
+                expr: 100 * (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes))
                 instant: true
                 intervalMs: 1000
                 legendFormat: __auto
