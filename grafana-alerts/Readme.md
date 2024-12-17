@@ -52,13 +52,40 @@ To install this software on your cluster, you need to have previously installed 
 
 You can find the installation instructions for prometheus here [Prometheus Setup](../prometheus/README.md)
 
+### Setup SMTP
+
+In this particular variation will be used AWS SES to deliver email notifications.
+To set up AWS SES, follow these steps:
+
+- Go to your AWS console and find SES service
+- In AWS SES console go to Configuration -> Identities and click on "Create new identity"
+- In Create identity -> Identity details  -> Select "Email address"
+- In Email address -> Enter the email address for the Grafana Alerts service to which you want to receive email notifications
+- Click on the "Create identity" button
+- Go to your email address you entered and find email for the verification and verify that you are owner of the email
+- In AWS SES console go to SMTP Settings and click on "Create SMTP credentials"
+- In Specify user details -> Create user for SMTP -> User name input username for SMTP
+- Click Create user
+- After creating the SMTP user, you'll be provided with option to download the credentials.
+
+You can also find SMTP endpoint in AWS SES console under SMTP Settings, it will be needed in the next steps.
+
 ### Github repository secrets for Grafana
 
 To run installation workflow in via GHA you need to create new secrets in your repository.
 
-- ADMIN_PASSWORD - Grafana admin password
-- SMTP_HOST - SMTP host
-- SMTP_USER - SMTP user
-- SMTP_PASSWORD - SMTP password
-- SMTP_FROM_ADDRESS - SMTP from address
+For SMTP credentials you need to use previously created SMTP user in AWS SES.
 
+- GRAFANA_ADMIN_PASSWORD -- Grafana admin password
+- GRAFANA_SMTP_HOST -- Grafana SMTP host
+- GRAFANA_SMTP_USER  -- Grafana SMTP user
+- GRAFANA_SMTP_PASSWORD  -- Grafana SMTP password
+- GRAFANA_SMTP_FROM_ADDRESS  -- Grafana SMTP from address
+
+#### Run GHA workflow manually
+
+1. Click on the "Actions" tab.
+2. Find and click on "Github Actions workflow for deployment wordpress on k3s cluster"
+3. Find and click on button "Run workflow" in action section.
+
+#### Verification
