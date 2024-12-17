@@ -88,4 +88,29 @@ For SMTP credentials you need to use previously created SMTP user in AWS SES.
 2. Find and click on "Github Actions workflow for deployment wordpress on k3s cluster"
 3. Find and click on button "Run workflow" in action section.
 
-#### Verification
+## Verification
+
+### Basic deployment verification
+
+To verify that the deployment was successful, you can check public IP of the k3s cluster, on the port 3000 should be available Grafana wev interface.
+
+Log in into system using previously created admin password.
+
+Due to successful deployment in Grafana will be created:
+
+- in Dashboard section in folder dashboards will be created dashboards with metrics for k3s cluster
+- in Alerting section in Rules in folder dashboards will be created two rules for one for CPU and one for Memory
+- in Alerting section in Contact points will be created contact point "admin" with email you provided in Github secret
+
+### Alerting verification
+
+To verify that the alerting is working, you can create test load on you node of k3s cluster.
+To do this, you need install package "stress-ng" on your node.
+
+To run cpu test load on your node:
+
+```stress-ng -c 2 -t 180s```
+
+To run memory test load on your node:
+
+```stress-ng -m 1 --vm-bytes 1024M  -t 180s```
